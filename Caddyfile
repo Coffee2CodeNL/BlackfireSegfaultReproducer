@@ -1,0 +1,19 @@
+{
+    debug
+}
+
+localhost:8888 {
+    @phpRoute {
+                  not path /.well-known/mercure*
+                  not file {path}
+              }
+    rewrite @phpRoute index.php
+
+    @fc path index.php
+    php @fc
+
+
+    file_server {
+                    hide *.php
+    }
+}
